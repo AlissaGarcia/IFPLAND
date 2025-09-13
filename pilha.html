@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pilha - IFPLAND</title>
+  <link rel="stylesheet" href="pilha.css" />
+  <link rel="shortcut icon" href="assets/IFPLAND.png" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <audio id="bg-music" src="assets/Lenny Pixels - The Beat of Nuts n Bolts - 8bit.mp3" loop crossorigin="anonymous"></audio>
+<br>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="game-logo-link" aria-label="Ir para a página inicial">
+        <img src="assets/IFPLAND LOGO.png" alt="IFPLAND Logo" class="game-logo" />
+      </a>
+    </div>
+  </header>
+<br>
+  <!-- DESCRIÇÃO FORA DO FUNDO -->
+  <main class="main-wrap">
+    <section class="description">
+        <br>
+      <h1>PILHA (STACK)</h1>
+      <p>
+        Pilha é uma estrutura de dados que funciona no princípio <strong>Último a Entrar, Primeiro a Sair (LIFO - Last In, First Out)</strong>. 
+      Isso significa que o último elemento inserido na pilha é o primeiro a ser removido. 
+      </p>
+      <br>
+    </section>
+
+    <!-- ÁREA DO JOGO: fundo do cenário (sua imagem) -->
+    <section class="game-area" aria-live="polite" id="game-area">
+      <!-- prateleira (books thumbnails) -- these thumbs are positioned relative to the shelf area -->
+      <div class="shelf" id="shelf">
+        <img src="assets/PEED.png" alt="Programação Estruturada e Estrutura de Dados" class="book-thumb" data-book-id="programacao" data-title="Programação Estruturada e Estrutura de Dados">
+        <img src="assets/EPREE.png" alt="Empreendedorismo" class="book-thumb" data-book-id="empreendedorismo" data-title="Empreendedorismo">
+        <img src="assets/PE.png" alt="Probabilidade e Estatística" class="book-thumb" data-book-id="probabilidade" data-title="Probabilidade e Estatística">
+        <img src="assets/SO.png" alt="Sistemas Operacionais" class="book-thumb" data-book-id="sistemas_op" data-title="Sistemas Operacionais">
+        <img src="assets/REGCE.png" alt="Relações de Gênero, Classe e Etnia" class="book-thumb" data-book-id="relacoes_genero" data-title="Relações de Gênero, Classe e Etnia">
+        <img src="assets/BD.png" alt="Banco de Dados" class="book-thumb" data-book-id="banco_de_dados" data-title="Banco de Dados">
+      </div>
+
+      <!-- mesa (onde os livros "caem") -->
+      <div class="table-area">
+        <div class="round-table" id="table"></div>
+        <!-- pilha visual (itens empilhados sobre a mesa) -->
+        <div id="stack" class="stack" aria-live="polite" aria-atomic="true"></div>
+      </div>
+
+      <!-- Personagem Alissa (lado direito) -->
+<div class="character-wrapper right" id="wrapper-alissa" aria-live="polite">
+    <img src="assets/Gif Alissa.gif" alt="Alissa personagem em animação" id="char-alissa" class="character-gif" tabindex="0">
+    <div class="thought-bubble" id="char-bubble-alissa" role="note" aria-hidden="false">
+      <p>
+        Bem-vindo à biblioteca! Clique em um livro para adicioná-lo à pilha. 
+      </p>
+    </div>
+  </div>
+
+      <!-- aviso perto do atendente (mantive para referência) -->
+      <div class="notice" id="notice">Atenção: na biblioteca só podem ser levados no máximo <strong>5</strong> livros.</div>
+    </section>
+  </main>
+
+  <!-- CONTROLES FIXOS (fora da área do jogo, para não "colidir" com o footer) -->
+  <div class="controls" id="controls">
+    <button id="read-top" class="small-btn" aria-label="Ler o último livro">📖 Ler livro</button>
+    <button id="read-all" class="small-btn" aria-label="Ler todos os livros">📚 Ler todos os livros</button>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    © 2024.2 ADS — Todos os direitos reservados. <br><br>
+    Desenvolvedores: Alissa, Tainá, Ivan e Ailton.
+  </footer>
+
+  <script src="pilha.js"></script>
+</body>
+</html>
