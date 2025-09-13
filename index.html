@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IFPLAND</title>
+  <link rel="stylesheet" href="index.css" />
+  <link rel="shortcut icon" href="assets/IFPLAND.png" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <audio id="bg-music" src="assets/Lenny Pixels - The Beat of Nuts n Bolts - 8bit.mp3" loop crossorigin="anonymous"></audio>
+<br>
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="game-logo-link" aria-label="Ir para a página inicial">
+        <img src="assets/IFPLAND LOGO.png" alt="FPL Land" class="game-logo" />
+      </a>
+    </div>
+  </header>
+<br>
+  <main class="container">
+    <p class="instruction">
+      Clique em um dos botões para acessar os jogos educativos do IFCE e entender os algoritmos abaixo.
+    </p>
+
+    <div class="buttons">
+      <a class="big-btn" href="fila.html" aria-label="Ir para Fila">FILA</a>
+      <a class="big-btn" href="pilha.html" aria-label="Ir para Pilha">PILHA</a>
+      <a class="big-btn" href="lista.html" aria-label="Ir para Lista">LISTA</a>
+      
+    </div>
+  </main>
+
+  <br>
+
+<!-- Personagem Ailton (lado esquerdo) -->
+<div class="character-wrapper" id="wrapper-ailton" aria-live="polite">
+  <img src="assets/Gif Ailton.gif" alt="Ailton personagem em animação" id="char-ailton" class="character-gif" tabindex="0">
+  <div class="thought-bubble" id="char-bubble-ailton" role="note" aria-hidden="false">
+    <p>
+      Observe o funcionamento dos algoritmos estudados na disciplina de programação estruturada e
+      estrutura de dados de forma dinâmica e interativa através de joguinhos legais desenvolvidos por
+      nós na turma de análise e desenvolvimento de sistemas.
+    </p>
+  </div>
+</div>
+
+<!-- Personagem Alissa (lado direito) -->
+<div class="character-wrapper right" id="wrapper-alissa" aria-live="polite">
+  <img src="assets/Gif Alissa.gif" alt="Alissa personagem em animação" id="char-alissa" class="character-gif" tabindex="0">
+  <div class="thought-bubble" id="char-bubble-alissa" role="note" aria-hidden="false">
+    <p>
+      Observe o funcionamento dos algoritmos estudados na disciplina de programação estruturada e
+      estrutura de dados de forma dinâmica e interativa através de joguinhos legais desenvolvidos por
+      nós na turma de análise e desenvolvimento de sistemas.
+    </p>
+  </div>
+</div>
+
+
+
+  <footer class="site-footer">
+    © 2024.2 ADS — Todos os direitos reservados. <br> <br>Desenvolvedores: Alissa, Tainá, Ivan e Ailton.
+  </footer>
+
+  <script src="index.js"></script>
+</body>
+</html>

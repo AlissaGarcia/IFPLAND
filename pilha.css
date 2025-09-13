@@ -1,0 +1,315 @@
+:root{
+    --primary-green: #4AA543;
+    --bg-page: #F7F6F4;
+    --button-green: #1B5E20;
+    --button-border: #083810;
+    --footer-green: #4AA543;
+    --footer-height: 90px;
+  
+    /* percent-based positions (escalam com a área do jogo) */
+    --shelf-left-pct: 4%;
+    --shelf-top-pct: 14%;
+    --shelf-width-pct: 26%;
+    --shelf-height-pct: 58%;
+    --table-right-pct: 8%;
+    --table-bottom-pct: 8%;
+  }
+  
+  /* reset */
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    font-family: 'Press Start 2P', monospace;
+    background: var(--bg-page);
+    padding-bottom: var(--footer-height); /* espaço para o footer fixo */
+    cursor: url('assets/cursor.png') 16 16, auto;
+  }
+  
+  /* NAVBAR */
+  .navbar{ background:var(--primary-green); padding:12px 20px; box-shadow:0 6px 0 rgba(0,0,0,0.15) }
+  .nav-inner{ max-width:1500px; margin:0 auto; position:relative; height:76px; display:flex; align-items:center; justify-content:center }
+  .game-logo-link{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%) }
+  .game-logo{ max-height:100px; image-rendering:pixelated }
+  
+  /* descrição (fora do fundo) */
+  .main-wrap{ max-width:1200px; margin:18px auto; padding:0 18px }
+  .description{ text-align:center; margin-bottom:14px }
+  .description h1{ font-size:18px; margin-bottom:12px }
+  .description p{ font-size:12px; line-height:1.6 }
+  
+  /* game-area: agora usa aspect-ratio e background-size que preserva a imagem inteira */
+  .game-area{
+    position: relative;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    aspect-ratio: 1200 / 560; /* mantém mesma proporção original aproximada */
+    min-height: 360px; /* fallback */
+    background-image: url("assets/bibliotecafundo.png");
+    background-size: contain;       /* garante que a imagem inteira apareça sem corte */
+    background-position: center top;
+    background-repeat: no-repeat;
+    border-radius: 6px;
+    overflow: visible;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.08);
+    background-color: var(--bg-page); /* garante cor de fundo nas áreas "letterbox" */
+  }
+ 
+  
+  /* PRATELEIRA: agora posicionada por percentuais relativos à game-area */
+  .shelf{
+    position: absolute;
+    left: 300px;
+    top: 200px;
+    width: var(--shelf-width-pct);
+    height: ar(--shelf-height-pct);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 6px;
+    pointer-events: none;
+  }
+  
+  /* pequenos thumbnails (capas de livros) — responsivos */
+  .book-thumb{
+    pointer-events: auto;
+    width: clamp(110px, 6.5vw, 84px); /* escala com viewport / area */
+    height: auto;
+    display: block;
+    transform-origin: center center;
+    transition: transform 140ms ease, box-shadow 140ms ease;
+    border: 4px solid rgba(0,0,0,0.08);
+    image-rendering: pixelated;
+    cursor: pointer;
+    filter: drop-shadow(0 2px 0 rgba(0,0,0,0.12));
+  }
+  .book-thumb:hover,
+  .book-thumb:focus{
+    transform: scale(1.40) translateZ(0);
+    z-index: 40;
+    box-shadow: 10px 10px 14px rgba(0,0,0,0.35);
+  }
+  
+  /* mesa (à direita) — ajustada para porcentagens para escalar com a área */
+  .table-area{
+    position:absolute;
+    right: var(--table-right-pct);
+    bottom: var(--table-bottom-pct);
+    width: 5200px;
+    height: 700px;
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+    pointer-events:none;
+  }
+  
+  /* pilha visual: container relativo, os livros terão offsets via JS */
+  .stack{
+    position:absolute;
+    right: calc(var(--table-right-pct) + 34px);
+    bottom: calc(var(--table-bottom-pct) + 58px);
+    width: 14px;
+    height: auto;
+    pointer-events: none;
+  }
+  
+  /* cada livro na stack */
+  .stack .stack-book{
+    position:absolute;
+    left:0;
+    width:140px;
+    height:auto;
+    transform-origin: center bottom;
+    transition: transform 220ms ease, opacity 220ms ease;
+    image-rendering: pixelated;
+    pointer-events: none;
+    user-select: none;
+  }
+  
+  /* personagem Alissa ao lado da mesa */
+  .character-wrapper{
+    position:absolute;
+    right: calc(var(--table-right-pct) - 36px);
+    bottom: calc(var(--table-bottom-pct) + 2px);
+    text-align:center;
+    z-index:900;
+    pointer-events:auto;
+  }
+  .character-gif{ height: 8.4rem; image-rendering:pixelated; cursor:pointer }
+  .thought-bubble{
+    position:absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform:translateX(-50%);
+    max-width: 16rem;
+    background: var(--bg-page);
+    border: 6px solid var(--button-border);
+    padding: 8px;
+    border-radius:6px;
+    font-size:10px;
+    line-height:1.2;
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.18);
+  }
+
+  /* ===== Personagens (esquerdo e direito) com balões centralizados acima da cabeça ===== */
+.character-wrapper,
+.character-wrapper.right {
+  position: fixed;
+  bottom: calc(var(--footer-height) + 0.8rem); /* acima do footer */
+  width: fit-content;
+  display: inline-block;
+  z-index: 900;
+  pointer-events: auto;
+  text-align: center;
+}
+
+/* posição específica: esquerda e direita */
+.character-wrapper { left: 1.2rem; }
+.character-wrapper.right { right: 1.2rem; left: auto; }
+
+/* GIF do personagem — altura aproximada 3cm */
+.character-gif {
+  height: 3cm;
+  width: auto;
+  display: block;
+  image-rendering: pixelated;
+  cursor: pointer;
+}
+
+/* container do balão: posicionamento absoluto relativo ao wrapper */
+/* o balão ficará centralizado horizontalmente acima do GIF */
+.thought-bubble {
+  position: absolute;
+  bottom: calc(100% + 12px);            /* 12px acima da cabeça do GIF */
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(12cm, calc(100vw - 4rem)); /* nunca maior que a tela */
+  background: var(--bg-white);
+  border: 8px solid var(--button-border);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 10px 10px 0 rgba(0,0,0,0.32);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  line-height: 1.15;
+  color: #000;
+  white-space: normal;
+  transition: opacity .18s ease, transform .18s ease;
+  z-index: 901;
+}
+
+/* triângulo do balão apontando para o GIF (centralizado) */
+.thought-bubble::after{
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  top: 100%; /* fica logo abaixo do balão (apontando para baixo) */
+  background: var(--bg-white);
+  border: 8px solid var(--button-border);
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.18);
+  z-index: 900;
+}
+
+/* classe para esconder o balão quando quiser via JS */
+.thought-bubble.hidden {
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+}
+
+
+  /* CONTROLES: posicionados dinamicamente (não fixos no footer) */
+.controls{
+    position: absolute; /* será posicionado pelo JS */
+    z-index: 910;
+    pointer-events: auto;
+    display: flex;
+    gap: 12px;
+    left: 0;   /* valores reais serão escritos pelo JS */
+    top: 0;
+    transform: translateX(0); /* o JS centraliza */
+  }
+  
+  /* botões (mantive seu estilo) */
+  .small-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+    color:#fff;
+    background:var(--button-green);
+    min-width:140px;
+    padding:10px 12px;
+    font-size:12px;
+    border:6px solid var(--button-border);
+    border-radius:4px;
+    box-shadow:6px 6px 0 rgba(0,0,0,0.32);
+    transition: transform .12s, box-shadow .12s;
+    cursor:pointer;
+    user-select:none;
+  }
+  .small-btn:hover{ transform: scale(1.06); box-shadow: 12px 12px 0 rgba(0,0,0,0.42) }
+  
+  
+  /* aviso perto do atendente */
+  .notice{
+    position:absolute;
+    right: calc(var(--table-right-pct) + 50px);
+    bottom: calc(var(--table-bottom-pct) + 350px);
+    width: 220px;
+    background: rgba(255,255,255,0.95);
+    border: 6px solid var(--button-border);
+    padding: 8px;
+    font-size:10px;
+    text-align:left;
+    z-index: 920;
+    pointer-events: none;
+  }
+  
+  /* footer */
+  .site-footer{
+    left:0; bottom:0; width:100%; height:var(--footer-height);
+    padding:18px 20px; text-align:center; font-size:11px;
+    background:var(--footer-green); color:#fff; box-shadow: 0 -4px 0 rgba(0,0,0,0.08);
+    z-index: 1000;
+  }
+  
+  /* pequenas animações/feedback */
+  .stack.full {
+    animation: shake .28s;
+  }
+  @keyframes shake {
+    0% { transform: translateX(0) }
+    25% { transform: translateX(-6px) }
+    50% { transform: translateX(6px) }
+    75% { transform: translateX(-4px) }
+    100% { transform: translateX(0) }
+  }
+  
+  /* responsivo básico: tweaks */
+  @media (max-width:900px){
+    :root{
+      --shelf-left-pct: 3%;
+      --shelf-top-pct: 12%;
+      --shelf-width-pct: 34%;
+      --table-right-pct: 6%;
+      --table-bottom-pct: 6%;
+    }
+    .game-area{ aspect-ratio: 16/9 }
+  }
+  @media (max-width:600px){
+    :root{
+      --shelf-left-pct: 2%;
+      --shelf-top-pct: 10%;
+      --shelf-width-pct: 42%;
+      --table-right-pct: 5%;
+      --table-bottom-pct: 5%;
+    }
+    .character-gif{ height:6.2rem }
+    .game-area{ aspect-ratio: 4/3 }
+  }
+  

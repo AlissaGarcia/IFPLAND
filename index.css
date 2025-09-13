@@ -1,0 +1,238 @@
+/* ===== Variáveis de cor e reset ===== */
+:root{
+    --primary-green: #4AA543;
+    --accent-cyan: #62F3FF; /* assumido conforme troca anterior */
+    --bg-white: #F7F6F4;
+    --danger-red: #FF3131;
+    --button-green: #1B5E20;
+    --button-border: #083810;
+    --footer-green: #4AA543;
+    --footer-height: 90px; /* usado para padding do body */
+  }
+  
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body{
+    background: var(--bg-white);
+    font-family: 'Press Start 2P', monospace;
+    -webkit-font-smoothing: none;
+    -moz-osx-font-smoothing: grayscale;
+    image-rendering: pixelated;
+    cursor: url('assets/cursor.png') 16 16, auto;
+    padding-bottom: var(--footer-height); /* evita que conteúdo fique atrás do footer fixo */
+  }
+  
+  /* NAVBAR */
+  .navbar{
+    background: var(--primary-green);
+    padding: 12px 20px;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.15);
+  }
+  .nav-inner{
+    max-width: 1500px;
+    margin: 0 auto;
+    position: relative; /* necessário para centralizar a logo com absolute */
+    height: 76px; /* ajusta altura do navbar para centralizar verticalmente */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Centraliza a logo dentro do navbar e permite escala ao hover */
+  .game-logo-link{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: block;
+    text-decoration: none;
+    /* pointer cursor por padrão */
+  }
+  .game-logo{
+    display: block;
+    max-height: 100px;
+    height: auto;
+    width: auto;
+    image-rendering: pixelated;
+    transition: transform 0.14s ease;
+    transform-origin: center center;
+  }
+  /* Ao passar o mouse a logo aumenta mantendo a centralização */
+  .game-logo-link:hover,
+  .game-logo-link:focus{
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+  
+  /* CONTEÚDO PRINCIPAL */
+  .container{
+    max-width: 1100px;
+    margin: 28px auto;
+    text-align: center;
+    padding: 0 20px;
+  }
+  .instruction{
+    margin: 10px 0 20px 0;
+    font-size: 13px;
+  }
+  
+  /* ===== BOTÕES QUADRADOS GRANDES ===== */
+  .buttons{
+    display: flex;
+    justify-content: center;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  
+  /* largura responsiva e aspecto 1:1 para quadrado */
+  .big-btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #fff;
+    background: var(--button-green);
+    width: clamp(180px, 24vw, 320px);
+    aspect-ratio: 1 / 1;
+    font-size: 14px;
+    border: 10px solid var(--button-border);
+    border-radius: 4px;
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.32);
+    transition: transform 0.14s cubic-bezier(.2,.8,.2,1), box-shadow 0.14s;
+    user-select: none;
+    image-rendering: pixelated;
+    text-align: center;
+    padding: 0;
+    line-height: 1;
+  }
+  
+  /* Hover / foco / classe JS */
+  .big-btn:hover,
+  .big-btn.is-hover,
+  .big-btn:focus-visible{
+    transform: scale(1.12);
+    box-shadow: 20px 20px 0 rgba(0,0,0,0.42);
+  }
+  
+  /* Pressionado */
+  .big-btn:active,
+  .big-btn.is-active{
+    transform: translateY(6px) scale(1.02);
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.28);
+  }
+  
+  /* imagens responsivas */
+  img{ max-width: 100%; height: auto; display: block; }
+  
+  /* FOOTER fixo no final */
+  .site-footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: var(--footer-height);
+    line-height: 1.4;
+    padding: 18px 20px;
+    text-align: center;
+    font-size: 11px;
+    background: var(--footer-green);
+    color: #fff;
+    box-shadow: 0 -4px 0 rgba(0,0,0,0.08);
+  }
+
+ /* ===== Personagens (esquerdo e direito) com balões centralizados acima da cabeça ===== */
+.character-wrapper,
+.character-wrapper.right {
+  position: fixed;
+  bottom: calc(var(--footer-height) + 0.8rem); /* acima do footer */
+  width: fit-content;
+  display: inline-block;
+  z-index: 900;
+  pointer-events: auto;
+  text-align: center;
+}
+
+/* posição específica: esquerda e direita */
+.character-wrapper { left: 1.2rem; }
+.character-wrapper.right { right: 1.2rem; left: auto; }
+
+/* GIF do personagem — altura aproximada 3cm */
+.character-gif {
+  height: 3cm;
+  width: auto;
+  display: block;
+  image-rendering: pixelated;
+  cursor: pointer;
+}
+
+/* container do balão: posicionamento absoluto relativo ao wrapper */
+/* o balão ficará centralizado horizontalmente acima do GIF */
+.thought-bubble {
+  position: absolute;
+  bottom: calc(100% + 12px);            /* 12px acima da cabeça do GIF */
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(12cm, calc(100vw - 4rem)); /* nunca maior que a tela */
+  background: var(--bg-white);
+  border: 8px solid var(--button-border);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 10px 10px 0 rgba(0,0,0,0.32);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  line-height: 1.15;
+  color: #000;
+  white-space: normal;
+  transition: opacity .18s ease, transform .18s ease;
+  z-index: 901;
+}
+
+/* triângulo do balão apontando para o GIF (centralizado) */
+.thought-bubble::after{
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  top: 100%; /* fica logo abaixo do balão (apontando para baixo) */
+  background: var(--bg-white);
+  border: 8px solid var(--button-border);
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.18);
+  z-index: 900;
+}
+
+/* classe para esconder o balão quando quiser via JS */
+.thought-bubble.hidden {
+  opacity: 0;
+  transform: translateY(6px);
+  pointer-events: none;
+}
+
+/* adaptações responsivas */
+@media (max-width: 900px) {
+  .thought-bubble { max-width: min(10.5cm, calc(100vw - 3rem)); font-size: 9px; padding: 8px; bottom: calc(100% + 10px); }
+  .character-gif { height: 2.6cm; }
+}
+
+@media (max-width: 600px) {
+  .character-gif { height: 2.2cm; }
+  .thought-bubble { max-width: calc(100vw - 2.5rem); font-size: 9px; padding: 8px; bottom: calc(100% + 8px); }
+  .character-wrapper { left: 0.6rem; }
+  .character-wrapper.right { right: 0.6rem; }
+}
+
+  /* RESPONSIVO */
+  @media (max-width: 600px){
+    .big-btn{ width: clamp(140px, 32vw, 220px); font-size: 12px; }
+    .nav-inner{ height: 56px; }
+    .game-logo{ max-height: 40px; }
+  }
+
+    /* responsivo: reduzir balão e gif em telas pequenas */
+    @media (max-width:600px){
+        .character-gif{ height: 2.2cm; }
+        .thought-bubble{ max-width: 9.5cm; font-size: 9px; padding: 8px; }
+        .character-wrapper{ left: 0.6rem; bottom: calc(var(--footer-height) + 0.4rem); }
+      }
+      
+  
