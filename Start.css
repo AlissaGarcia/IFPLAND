@@ -1,0 +1,128 @@
+:root {
+    --primary-green: #4AA543;
+    --accent-cyan: #62F3FF;
+    --bg-white: #F7F6F4;
+    --button-green: #1B5E20;
+    --button-border: #083810;
+    --footer-green: #4AA543;
+    --footer-height: 90px;
+  }
+  
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  
+  body {
+    background: var(--bg-white) url('assets/fundo.png');
+    font-family: 'Press Start 2P', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: var(--footer-height);
+    image-rendering: pixelated;
+  }
+  
+  .start-container {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  
+  .game-title {
+    font-size: 36px;
+    color: var(--primary-green);
+    text-shadow: 4px 4px 0 rgba(0,0,0,0.35);
+    margin-bottom: 2rem;
+  }
+  
+  /* Conteúdo central: botão + gif */
+  .main-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+  }
+  
+  /* Botão START */
+  .start-btn {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 22px;
+    color: #fff;
+    background: var(--button-green);
+    border: 12px solid var(--button-border);
+    border-radius: 8px;
+    padding: 40px 60px;
+    cursor: pointer;
+    box-shadow: 14px 14px 0 rgba(0,0,0,0.35);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .start-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 20px 20px 0 rgba(0,0,0,0.45);
+  }
+  .start-btn:active {
+    transform: translateY(6px) scale(1.02);
+    box-shadow: 8px 8px 0 rgba(0,0,0,0.28);
+  }
+  
+  /* Professora Jéssica */
+  .character-wrapper {
+    position: relative;
+  }
+  .character-gif {
+    height: 12cm; /* grande destaque */
+    cursor: pointer;
+    image-rendering: pixelated;
+  }
+  
+  /* Balão de fala */
+  .thought-bubble {
+    position: absolute;
+    bottom: calc(100% + 16px);
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 14cm;
+    background: var(--bg-white);
+    border: 8px solid var(--button-border);
+    padding: 14px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.32);
+    font-size: 12px;
+    color: #000;
+    line-height: 1.2;
+    transition: opacity .18s ease, transform .18s ease;
+    z-index: 901;
+  }
+  .thought-bubble::after {
+    content: "";
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    top: 100%;
+    background: var(--bg-white);
+    border: 8px solid var(--button-border);
+    box-shadow: 6px 6px 0 rgba(0,0,0,0.18);
+  }
+  .thought-bubble.hidden {
+    opacity: 0;
+    transform: translateY(6px);
+    pointer-events: none;
+  }
+  
+  /* Rodapé */
+  .site-footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: var(--footer-height);
+    text-align: center;
+    font-size: 11px;
+    background: var(--footer-green);
+    color: #fff;
+    padding: 18px 20px;
+    line-height: 1.4;
+    box-shadow: 0 -4px 0 rgba(0,0,0,0.08);
+  }
+  

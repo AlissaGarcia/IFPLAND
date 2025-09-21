@@ -172,7 +172,7 @@ document.addEventListener('DOMContentLoaded', () => {
     readAllBtn && readAllBtn.addEventListener('click', () => {
       if (!stack.children.length) { alert('Nenhum livro na pilha.'); return; }
       // esvazia a pilha um por um (animação)
-      const toRemove = Array.from(stack.children);
+      const toRemove = Array.from(stack.children).reverse();
       toRemove.forEach((el, i) => {
         setTimeout(() => {
           el.style.transform = 'translateY(-42px) rotate(-12deg)';
