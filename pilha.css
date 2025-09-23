@@ -54,6 +54,50 @@ body{
   box-shadow: 0 6px 0 rgba(0,0,0,0.08);
   background-color: var(--bg-page); /* garante cor de fundo nas áreas "letterbox" */
 }
+/* Personagem andando */
+.character-wrapper {
+  position: absolute;
+  bottom: 20px; /* ajuste conforme a altura desejada em relação ao fundo */
+  left: -200px; /* começa fora da tela à esquerda */
+  display: inline-block;
+  animation: walkAcross 20s linear infinite; /* velocidade ajustável */
+  z-index: 900;
+  pointer-events: auto;
+  text-align: center;
+}
+
+/* animação: atravessa toda a tela */
+@keyframes walkAcross {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(120vw); }
+}
+
+/* personagem */
+.character-gif {
+  height: 8rem;
+  width: auto;
+  image-rendering: pixelated;
+  cursor: pointer;
+  display: block;
+}
+
+/* balão: acompanha porque está dentro do wrapper */
+.thought-bubble {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 220px;
+  background: #fff;
+  border: 4px solid #000;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 12px;
+  line-height: 1.2;
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.25);
+  white-space: normal;
+}
+
 
 
 /* PRATELEIRA: agora posicionada por percentuais relativos à game-area */
@@ -127,15 +171,7 @@ body{
   user-select: none;
 }
 
-/* personagem Alissa ao lado da mesa */
-.character-wrapper{
-  position:absolute;
-  right: calc(var(--table-right-pct) - 36px);
-  bottom: calc(var(--table-bottom-pct) + 2px);
-  text-align:center;
-  z-index:900;
-  pointer-events:auto;
-}
+
 .character-gif{ height: 8.4rem; image-rendering:pixelated; cursor:pointer }
 .thought-bubble{
   position:absolute;

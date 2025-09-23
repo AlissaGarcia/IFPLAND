@@ -21,6 +21,31 @@
     padding-bottom: var(--footer-height);
     image-rendering: pixelated;
   }
+  .navbar {
+    background: var(--primary-green);
+    padding: 12px 20px;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.15);
+    width: 100%;       /* garante que ocupe toda a largura */
+    position: relative;
+    left: 0;
+    right: 0;
+  }
+  
+
+.game-logo-link{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%) }
+.game-logo{ max-height:100px; image-rendering:pixelated }
+
+.nav-inner {
+  max-width: 1500px;
+  margin: 0 auto;
+  position: relative; 
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
   
   .start-container {
     text-align: center;
@@ -80,6 +105,7 @@
     bottom: calc(100% + 16px);
     left: 50%;
     transform: translateX(-50%);
+    width: clamp(200px, 80vw, 14cm); /* nunca passa de 80% da tela */
     max-width: 14cm;
     background: var(--bg-white);
     border: 8px solid var(--button-border);
@@ -92,6 +118,7 @@
     transition: opacity .18s ease, transform .18s ease;
     z-index: 901;
   }
+  
   .thought-bubble::after {
     content: "";
     position: absolute;
