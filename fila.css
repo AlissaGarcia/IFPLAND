@@ -1,0 +1,107 @@
+:root{
+    --primary-green: #4AA543;
+    --bg-page: #F7F6F4;
+    --button-green: #1B5E20;
+    --button-border: #083810;
+    --footer-green: #4AA543;
+    --footer-height: 90px;
+  }
+  
+  /* reset */
+  *{box-sizing:border-box}
+  html,body{height:100%;margin:0}
+  body{
+    font-family: 'Press Start 2P', monospace;
+    background: var(--bg-page);
+    padding-bottom: var(--footer-height);
+    cursor: url('assets/cursor.png') 16 16, auto;
+  }
+  
+  /* NAVBAR */
+  .navbar{ background:var(--primary-green); padding:12px 20px; box-shadow:0 6px 0 rgba(0,0,0,0.15) }
+  .nav-inner{ max-width:1500px; margin:0 auto; position:relative; height:76px; display:flex; align-items:center; justify-content:center }
+  .game-logo-link{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%) }
+  .game-logo{ max-height:100px; image-rendering:pixelated }
+  
+  /* MAIN WRAP */
+  .main-wrap{ max-width:1200px; margin:18px auto; padding:0 18px }
+  
+  /* ÁREA DO JOGO (fundo) */
+  .game-area{
+    position: relative;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    aspect-ratio: 1200 / 560;
+    min-height: 360px;
+    background-image: url("assets/Fundo\ Fila.png");
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    border-radius: 6px;
+    overflow: visible;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.08);
+    background-color: var(--bg-page);
+  }
+  
+ /* Container que vai alinhar os personagens lado a lado */
+.characters {
+    position: absolute;
+    bottom: 2px;
+    left: 1%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.2rem; /* espaço entre eles */
+    z-index: 900;
+    text-align: left;
+  }
+  
+  /* cada personagem */
+  .character-wrapper {
+    position: relative; /* não precisa mais ser absolute */
+    width: fit-content;
+  }
+  
+  .character-gif {
+    height: 8rem;
+    width: auto;
+    display: block;
+    image-rendering: pixelated;
+    cursor: pointer;
+  }
+
+  /* descrição (fora do fundo) */
+.main-wrap{ max-width:1200px; margin:18px auto; padding:0 18px }
+.description{ text-align:center; margin-bottom:14px }
+.description h1{ font-size:18px; margin-bottom:12px }
+.description p{ font-size:12px; line-height:1.6 }
+  
+.thought-bubble {
+    position: absolute;
+    bottom: calc(100% + 12px);
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: min(12cm, calc(100vw - 4rem));
+    background: #fff; /* fundo branco */
+    border: 8px solid var(--button-border);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 10px 10px 0 rgba(0,0,0,0.32);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 10px;
+    line-height: 1.15;
+    color: #000;
+    white-space: normal;
+    transition: opacity .18s ease, transform .18s ease;
+    z-index: 901;
+  }
+  
+  
+  /* FOOTER */
+  .site-footer{
+    left:0; bottom:0; width:100%; height:var(--footer-height);
+    padding:18px 20px; text-align:center; font-size:11px;
+    background:var(--footer-green); color:#fff; box-shadow: 0 -4px 0 rgba(0,0,0,0.08);
+    z-index: 1000;
+  }
+  

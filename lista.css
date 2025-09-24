@@ -1,0 +1,253 @@
+:root{
+  --primary-green: #4AA543;
+  --accent-cyan: #62F3FF;
+  --bg-white: #ffffff;
+  --danger-red: #FF3131;
+  --button-green: #1B5E20;
+  --button-border: #083810;
+  --footer-green: #4AA543;
+  --footer-height: 90px;
+}
+
+body {
+  background: var(--bg-white);
+  font-family: 'Press Start 2P', monospace;
+  padding-bottom: var(--footer-height);
+  overflow: hidden;
+}
+
+.navbar-space {
+  height: 28px;
+}
+
+.site-footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: var(--footer-height);
+  line-height: 1.4;
+  padding: 18px 20px;
+  text-align: center;
+  font-size: 11px;
+  background: var(--footer-green);
+  color: #fff;
+  box-shadow: 0 -4px 0 rgba(0,0,0,0.08);
+}
+
+.navbar{
+  background: var(--primary-green);
+  padding: 12px 20px;
+  box-shadow: 0 6px 0 rgba(0,0,0,0.15);
+}
+.nav-inner{
+  max-width: 1500px;
+  margin: 0 auto;
+  position: relative;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.game-logo-link{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: block;
+  text-decoration: none;
+}
+.game-logo{
+  display: block;
+  max-height: 100px;
+  height: auto;
+  width: auto;
+  image-rendering: pixelated;
+  transition: transform 0.14s ease;
+  transform-origin: center center;
+}
+.game-logo-link:hover,
+.game-logo-link:focus{
+  transform: translate(-50%, -50%) scale(1.12);
+}
+
+/* Personagem Ailton no canto esquerdo */
+.character-wrapper {
+  position: fixed;
+  left: 1.2rem;
+  bottom: calc(var(--footer-height) + 0.8rem);
+  width: fit-content;
+  z-index: 900;
+  text-align: center;
+}
+.character-gif {
+  height: 3cm;
+  width: auto;
+  display: block;
+  image-rendering: pixelated;
+  cursor: pointer;
+}
+.thought-bubble {
+  position: absolute;
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: min(12cm, calc(100vw - 4rem));
+  background: var(--bg-white);
+  border: 8px solid var(--button-border);
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 10px 10px 0 rgba(0,0,0,0.32);
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  line-height: 1.15;
+  color: #000;
+  white-space: normal;
+  z-index: 901;
+}
+.thought-bubble::after{
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  top: 100%;
+  background: var(--bg-white);
+  border: 8px solid var(--button-border);
+  box-shadow: 6px 6px 0 rgba(0,0,0,0.18);
+  z-index: 900;
+}
+.thought-bubble.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Layout da lista e botões */
+.lista-fundo {
+  min-height: calc(100vh - var(--footer-height) - 76px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 8vw;
+  background: url('assets/Lista Fundo.png') no-repeat center center;
+  background-size: contain;
+}
+
+.lista-chamada {
+  width: 340px;
+  height: 400px;
+  position: relative;
+  background: transparent;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.col-botoes-esquerda {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: absolute;
+  left: 220px;
+  top: 40px;
+  z-index: 10;
+}
+
+.col-botoes-direita {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: absolute;
+  right: -1000px;
+  top: 40px;
+  z-index: 10;
+}
+
+#nomes-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.linha-nome {
+  position: absolute;
+  left: 225%;
+  transform: translateX(-50%);
+  width: 80%;
+  text-align: center;
+  font-size: 1rem;
+  color: #222;
+  font-family: 'Press Start 2P', monospace;
+  background: transparent;
+  border: none;
+  outline: none;
+  margin: 0;
+  padding: 0;
+  letter-spacing: 1px;
+  text-align: center;
+}
+
+.linha1 { top: 50px; }
+.linha2 { top: 139px; }
+.linha3 { top: 225px; }
+.linha4 { top: 310px; }
+.linha5 { top: 395px; }
+
+.add-nome,
+.remove-nome {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: var(--button-green);
+  width: 110px;
+  aspect-ratio: 2.5 / 1;
+  font-size: 12px;
+  border: 6px solid var(--button-border);
+  border-radius: 4px;
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.32);
+  user-select: none;
+  image-rendering: pixelated;
+  text-align: center;
+  padding: 0;
+  line-height: 1;
+  cursor: pointer;
+  transition: none;
+}
+
+.add-nome:hover,
+.add-nome:focus-visible,
+.remove-nome:hover,
+.remove-nome:focus-visible {
+  transform: scale(1.12);
+  background: var(--button-green);
+  box-shadow: 12px 12px 0 rgba(0,0,0,0.32);
+}
+
+.add-nome:active,
+.remove-nome:active {
+  transform: scale(1.04);
+  background: var(--button-green);
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.32);
+}
+
+/* BOTÃO DE SOM */
+.sound-toggle {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 999;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  padding: 10px 12px;
+  border: 6px solid var(--button-border);
+  background: var(--button-green);
+  box-shadow: 8px 8px 0 rgba(0,0,0,0.32);
+  cursor: pointer;
+  display: block;
+}

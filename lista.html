@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lista de Chamada - IFPLAND</title>
+  <link rel="stylesheet" href="lista.css" />
+  <link rel="shortcut icon" href="assets/IFPLAND.png" type="image/x-icon" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <audio id="bg-music" src="assets/Lenny Pixels - The Beat of Nuts n Bolts - 8bit.mp3" loop crossorigin="anonymous"></audio>
+  <header class="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="game-logo-link" aria-label="Ir para a página inicial">
+        <img src="assets/IFPLAND LOGO.png" alt="FPL Land" class="game-logo" />
+      </a>
+    </div>
+  </header>
+  <div class="navbar-space"></div>
+  <!-- Personagem Ailton (lado esquerdo) -->
+  <div class="character-wrapper" id="wrapper-ailton" aria-live="polite">
+    <img src="assets/Gif Ailton.gif" alt="Ailton personagem em animação" id="char-ailton" class="character-gif" tabindex="0">
+    <div class="thought-bubble" id="char-bubble-ailton" role="note" aria-hidden="false">
+      <p>
+        Uma <b>lista encadeada</b> é uma estrutura de dados onde cada elemento aponta para o próximo.<br>
+        Ao remover um nome, os de baixo sobem para ocupar o lugar, mantendo a ordem!
+      </p>
+    </div>
+  </div>
+  <div class="lista-fundo">
+    <div class="lista-chamada">
+      <div class="col-botoes-esquerda">
+        <button class="add-nome" data-nome="Alissa">Adicionar Alissa</button>
+        <button class="add-nome" data-nome="Ailton">Adicionar Ailton</button>
+        <button class="add-nome" data-nome="Tainá">Adicionar Tainá</button>
+        <button class="add-nome" data-nome="Ivan">Adicionar Ivan</button>
+        <button class="add-nome" data-nome="Jessica">Adicionar Jessica</button>
+      </div>
+      <ul id="nomes-lista">
+        <!-- Nomes inseridos via JS -->
+      </ul>
+      <div class="col-botoes-direita">
+        <button class="remove-nome" data-nome="Alissa">Remover Alissa</button>
+        <button class="remove-nome" data-nome="Ailton">Remover Ailton</button>
+        <button class="remove-nome" data-nome="Tainá">Remover Tainá</button>
+        <button class="remove-nome" data-nome="Ivan">Remover Ivan</button>
+        <button class="remove-nome" data-nome="Jessica">Remover Jessica</button>
+      </div>
+    </div>
+  </div>
+  <footer class="site-footer">
+    © 2024.2 ADS — Todos os direitos reservados.<br>
+    Desenvolvedores: Alissa, Tainá, Ivan e Ailton.
+  </footer>
+  <script src="lista.js"></script>
+</body>
+</html>
