@@ -95,7 +95,10 @@
     transition: opacity .18s ease, transform .18s ease;
     z-index: 901;
   }
-  
+  .hidden {
+    display: none;
+  }
+    
   
   /* FOOTER */
   .site-footer{
@@ -104,4 +107,201 @@
     background:var(--footer-green); color:#fff; box-shadow: 0 -4px 0 rgba(0,0,0,0.08);
     z-index: 1000;
   }
+  .game-logo-link {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+  .game-logo {
+    max-height: 100px;
+    image-rendering: pixelated;
+  }
   
+  /* MAIN WRAP & DESCRIPTION */
+  .main-wrap {
+    max-width: 1200px;
+    margin: 18px auto;
+    padding: 0 18px;
+  }
+  .description {
+    text-align: center;
+    margin-bottom: 14px;
+  }
+  .description h1 {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+  .description p {
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  
+  /* ÁREA DO JOGO (fundo) */
+  .game-area {
+    position: relative;
+    margin: 0 auto;
+    max-width: 1200px;
+    width: 100%;
+    aspect-ratio: 1200 / 560;
+    min-height: 360px;
+    background-image: url("assets/Fundo Fila.png");
+    background-size: contain;
+    background-position: center top;
+    background-repeat: no-repeat;
+    border-radius: 6px;
+    box-shadow: 0 6px 0 rgba(0,0,0,0.08);
+    background-color: var(--bg-page);
+    padding: 20px;
+  }
+  
+  /* MOCHILAS DISPONÍVEIS */
+  #mochilas-disponiveis {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 10px;
+  }
+  .mochila {
+    height: 80px;
+    image-rendering: pixelated;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  .mochila:hover {
+    transform: scale(1.1);
+  }
+  .mochila.adicionada {
+    opacity: 0.3;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+  
+  /* ÁREA DA FILA */
+  #fila-area {
+    position: absolute;
+    bottom: 20px;
+    left: 100px;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background-color: rgba(0,0,0,0.1);
+    border-radius: 8px;
+    border: 4px solid #333;
+  }
+  .fila-slot {
+    width: 90px;
+    height: 90px;
+    border: 4px dashed #555;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .fila-slot p {
+      color: #555;
+      font-size: 1.2rem;
+  }
+  .mochila-na-fila {
+      height: 80px;
+      width: 80px;
+      image-rendering: pixelated;
+      position: absolute;
+      transition: all 0.5s ease-in-out;
+  }
+  
+  
+  /* ÔNIBUS */
+  #onibus-container {
+      position: absolute;
+      bottom: 170px;
+      right: 180px;
+      width: 350px; 
+      height: 200px;
+  }
+  #onibus-img {
+      width: 150%;
+      height: 190%;
+      
+      image-rendering: pixelated;
+  }
+  #onibus-slots {
+      position: absolute;
+      top: 190px; /* Ajuste para alinhar com as janelas */
+      left: 45px; /* Ajuste para alinhar com as janelas */
+      display: flex;
+      gap: 70px; /* Espaçamento entre os assentos */
+  }
+  .onibus-slot {
+      width: 10px;
+      height: 50px;
+      position: relative;
+  }
+  .mochila-no-onibus {
+      height: 70px;
+      width: 70px;
+      image-rendering: pixelated;
+      position: absolute;
+  }
+  
+  
+  /* BOTÃO DE AÇÃO */
+  .action-button-container {
+      text-align: center;
+      margin-top: 20px;
+  }
+  #btn-entrar-onibus {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 16px;
+      padding: 15px 25px;
+      color: white;
+      background-color: var(--button-green);
+      border: 6px solid var(--button-border);
+      box-shadow: 8px 8px 0 rgba(0,0,0,0.32);
+      cursor: pointer;
+      transition: all 0.1s ease;
+  }
+  #btn-entrar-onibus:active {
+      transform: translate(4px, 4px);
+      box-shadow: 4px 4px 0 rgba(0,0,0,0.32);
+  }
+
+  /* Ocultar inicialmente */
+.hidden {
+  display: none;
+}
+
+/* Animação de saída do ônibus */
+.bus-exit {
+  animation: busExit 3s linear forwards;
+}
+
+@keyframes busExit {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(200%);
+    opacity: 0;
+  }
+}
+
+/* Animação de entrada do ônibus */
+.bus-enter {
+  animation: busEnter 3s ease forwards;
+}
+
+@keyframes busEnter {
+  0% {
+    transform: translateX(200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+

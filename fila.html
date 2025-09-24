@@ -6,8 +6,12 @@
   <title>Fila - IFPLAND</title>
   <link rel="stylesheet" href="fila.css" />
   <link rel="shortcut icon" href="assets/IFPLAND.png" type="image/x-icon" />
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />7
+
 </head>
+
+<audio id="bg-music" src="assets/Lenny Pixels - The Beat of Nuts n Bolts - 8bit.mp3" loop crossorigin="anonymous"></audio>
+
 <body>
   <!-- NAVBAR -->
   <header class="navbar">
@@ -27,41 +31,68 @@
   </p>
   <br>
 </section>
-
-  <!-- ÁREA DO JOGO COM FUNDO -->
-  <main class="main-wrap">
-    <section class="game-area" aria-live="polite" id="game-area">
-        <div class="characters">
-            <!-- Ivan -->
-            <div class="character-wrapper">
-              <img src="assets/Gif IVAN.gif" alt="Ivan" class="character-gif">
-              <div class="thought-bubble">
-                Clique em uma das mochilas para adicioná-las à fila.
+    
+    <main class="main-wrap">
+        <section class="game-area" aria-live="polite" id="game-area">
+          <div class="characters">
+              <!-- Ivan -->
+              <div class="character-wrapper">
+                <img src="assets/Gif IVAN.gif" alt="Ivan" class="character-gif">
+                <div class="thought-bubble">
+                  Clique em uma das mochilas para adicioná-las à fila.
+                </div>
+              </div>
+            
+              <!-- Tainá -->
+              <div class="character-wrapper">
+                <img src="assets/tainá.gif" alt="Tainá" class="character-gif">
+                <div class="thought-bubble">
+                  Clique em uma das mochilas para adicioná-las à fila.
+                </div>
               </div>
             </div>
-          
-            <!-- Tainá -->
-            <div class="character-wrapper">
-              <img src="assets/tainá.gif" alt="Tainá" class="character-gif">
-              <div class="thought-bubble">
-                Clique em uma das mochilas para adicioná-las à fila.
-              </div>
-            </div>
+            
+        <div id="mochilas-disponiveis">
+          <img src="assets/mochila_vermelha.png" alt="Mochila Vermelha" class="mochila" data-cor="vermelha">
+          <img src="assets/mochila_verde.png" alt="Mochila Verde" class="mochila" data-cor="verde">
+          <img src="assets/mochila_azul.png" alt="Mochila Azul" class="mochila" data-cor="azul">
+          <img src="assets/mochila_amarela.png" alt="Mochila Amarela" class="mochila" data-cor="amarela">
+        </div>
+  
+        <div id="fila-area">
+          <div class="fila-slot" data-posicao="0"><p>1º</p></div>
+          <div class="fila-slot" data-posicao="1"><p>2º</p></div>
+          <div class="fila-slot" data-posicao="2"><p>3º</p></div>
+          <div class="fila-slot" data-posicao="3"><p>4º</p></div>
+        </div>
+  
+        <div id="onibus-container" class="hidden">
+          <img src="assets/onibus.png" alt="Ônibus" id="onibus-img">
+          <div id="onibus-slots">
+              <div class="onibus-slot" data-posicao="0"></div>
+              <div class="onibus-slot" data-posicao="1"></div>
+              <div class="onibus-slot" data-posicao="2"></div>
+              <div class="onibus-slot" data-posicao="3"></div>
           </div>
-          
-          
-    </section>
-  </main>
+        </div>
+        
+  
+      </section>
+      <div class="action-button-container">
+          <button id="btn-entrar-onibus">Entrar no Ônibus</button>
+      </div>
+      
+    </main>
+  
 
   <!-- FOOTER -->
   <footer class="site-footer">
     © 2024.2 ADS — Todos os direitos reservados. <br><br>
     Desenvolvedores: Alissa, Tainá, Ivan e Ailton.
   </footer>
-  <script>
-    console.log("script dentro do HTML funcionando!");
-  </script>
-  <script src="fila.js" defer></script>
+
+  
+  <script src="fila.js"></script>
 
 </body>
 </html>
